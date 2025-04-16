@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ArchLinux初體驗，使用ArchInstall | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>ArchLinux初體驗，使用ArchInstall</h1></div><hr><div id="post-content"><h1 id="Arch-Linux-安裝教學"><a href="#Arch-Linux-安裝教學" class="headerlink" title="Arch Linux 安裝教學"></a>Arch Linux 安裝教學</h1><p>我們首先從 <strong>ISO 開機</strong>，選擇第一個 <code>Arch Linux install medium</code>。<br>會看到一堆 <code>OK</code> 畫面，這代表系統正在 Boot。等到畫面切換，出現 <code>root@archiso</code>，我們就能開始操作了。</p>
+<h2 id="網路測試"><a href="#網路測試" class="headerlink" title="網路測試"></a>網路測試</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ping archlinux.org<br></code></pre></td></tr></table></figure>
+
+<p>確認網路連線正常。</p>
+<h2 id="啟動安裝"><a href="#啟動安裝" class="headerlink" title="啟動安裝"></a>啟動安裝</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">archinstall<br></code></pre></td></tr></table></figure>
+
+<p>接下來就輕鬆多了。</p>
+<h2 id="基本設定"><a href="#基本設定" class="headerlink" title="基本設定"></a>基本設定</h2><ol>
+<li><p><strong>Mirrors and repositories</strong><br>選擇 <code>Select regions</code>，挑選適合的伺服器位置。選完後選 <code>Back</code>。</p>
+</li>
+<li><p><strong>Disk configuration</strong></p>
+<ul>
+<li><code>Partitioning</code> → <code>Use a best-effort default partition layout</code></li>
+<li><code>Filesystem</code> 選擇 <code>ext4</code><br>分割區設定就會自動完成，然後 <code>Back</code>。</li>
+</ul>
+</li>
+<li><p>確認 <strong>Swap</strong> 是否啟用。當 RAM 用滿時，系統會使用 Swap，避免記憶體不足造成當機。</p>
+</li>
+</ol>
+<h2 id="帳號與密碼"><a href="#帳號與密碼" class="headerlink" title="帳號與密碼"></a>帳號與密碼</h2><ul>
+<li><strong>Root password</strong>：設定 root 密碼。</li>
+<li><strong>User account</strong>：輸入使用者名稱、密碼並確認，然後問你要不要 <code>superuser</code> 權限，選 <code>yes</code>，然後 <code>Confirm and exit</code>。</li>
+</ul>
+<h2 id="系統與驅動"><a href="#系統與驅動" class="headerlink" title="系統與驅動"></a>系統與驅動</h2><ul>
+<li><p><strong>Profile</strong></p>
+<ul>
+<li><code>Type</code> 選擇 <code>Desktop</code></li>
+<li>推薦輕量的桌面環境：<code>xfce4</code></li>
+</ul>
+</li>
+<li><p><strong>Graphics</strong></p>
+<ul>
+<li>選擇顯示卡驅動程式<br>如果是 Nvidia，建議用 <code>Nvidia (proprietary)</code>，問題比較少。</li>
+</ul>
+</li>
+<li><p><strong>Audio</strong></p>
+<ul>
+<li>如果要聲音建議用 <code>PipeWire</code></li>
+<li>不需要聲音可以選 <code>No audio server</code></li>
+</ul>
+</li>
+<li><p><strong>Network configuration</strong></p>
+<ul>
+<li>選 <code>Copy ISO network</code> 開頭的選項</li>
+</ul>
+</li>
+<li><p><strong>Timezone</strong></p>
+<ul>
+<li>選擇你的時區，選單很長，慢慢找沒關係。</li>
+</ul>
+</li>
+</ul>
+<h2 id="開始安裝"><a href="#開始安裝" class="headerlink" title="開始安裝"></a>開始安裝</h2><p>完成以上設定後，按下 <code>Install</code>，然後選 <code>Yes</code>，系統就會自動安裝。</p>
+<h2 id="安裝完成"><a href="#安裝完成" class="headerlink" title="安裝完成"></a>安裝完成</h2><p>安裝完成後，會問要不要 <code>chroot</code>，我們安裝時設定過了，選 <code>No</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">reboot<br></code></pre></td></tr></table></figure>
+
+<p>重新開機，選擇 <code>Arch Linux</code>，然後登入剛才建立的使用者帳號與密碼，就能進入桌面啦！</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/11/25/linux-debug-02/">如何解決 Linux RAM 使用率高的問題？ Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Arch-Linux-%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8"><span class="toc-number">1.</span> <span class="toc-text">Arch Linux 安裝教學</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B6%B2%E8%B7%AF%E6%B8%AC%E8%A9%A6"><span class="toc-number">1.1.</span> <span class="toc-text">網路測試</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%9F%E5%8B%95%E5%AE%89%E8%A3%9D"><span class="toc-number">1.2.</span> <span class="toc-text">啟動安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.3.</span> <span class="toc-text">基本設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B3%E8%99%9F%E8%88%87%E5%AF%86%E7%A2%BC"><span class="toc-number">1.4.</span> <span class="toc-text">帳號與密碼</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E8%88%87%E9%A9%85%E5%8B%95"><span class="toc-number">1.5.</span> <span class="toc-text">系統與驅動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%96%8B%E5%A7%8B%E5%AE%89%E8%A3%9D"><span class="toc-number">1.6.</span> <span class="toc-text">開始安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E5%AE%8C%E6%88%90"><span class="toc-number">1.7.</span> <span class="toc-text">安裝完成</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
