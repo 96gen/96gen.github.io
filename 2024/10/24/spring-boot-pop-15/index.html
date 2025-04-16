@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（15） 從零開始打造電商購物車系統：專案結構與資料庫連接詳解 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（15） 從零開始打造電商購物車系統：專案結構與資料庫連接詳解</h1></div><hr><div id="post-content"><p>如果你正在尋找如何完成一個電商專案，恭喜你來對地方了！</p>
+<p>本專案是一個 RESTful API 專案，非常適合搭配前端框架，我們將使用 Vue.js 作為前端，讓專案進化成一個前後端分離的架構。</p>
+<h1 id="我們的優點"><a href="#我們的優點" class="headerlink" title="我們的優點"></a>我們的優點</h1><ul>
+<li>有完整教學</li>
+<li>照著做就能完成資料庫設定，不需加入其他群組。</li>
+<li>可以直接下載程式碼（Day22 會提供連結）</li>
+<li>完全免費</li>
+<li>串接支付平台（使用 Stripe）</li>
+<li>Redis 快取功能</li>
+<li>RabbitMQ 消息隊列</li>
+<li>支援高併發</li>
+</ul>
+<h1 id="我們的缺點"><a href="#我們的缺點" class="headerlink" title="我們的缺點"></a>我們的缺點</h1><ul>
+<li>小型專案，適合學習但不適合商業化</li>
+<li>沒有整合 Swagger</li>
+</ul>
+<h1 id="成果展示（需搭配-Vue-js-部分）"><a href="#成果展示（需搭配-Vue-js-部分）" class="headerlink" title="成果展示（需搭配 Vue.js 部分）"></a>成果展示（需搭配 Vue.js 部分）</h1><p class='item-img' data-src='https://images2.imgbox.com/71/f6/qIcIpOTm_o.png'><img src="https://images2.imgbox.com/71/f6/qIcIpOTm_o.png" alt="成果圖片1"></p>
+<p class='item-img' data-src='https://images2.imgbox.com/5c/2b/gaSjfyDp_o.png'><img src="https://images2.imgbox.com/5c/2b/gaSjfyDp_o.png" alt="成果圖片2"></p>
+<p class='item-img' data-src='https://images2.imgbox.com/4b/d6/hUJPOiik_o.png'><img src="https://images2.imgbox.com/4b/d6/hUJPOiik_o.png" alt="成果圖片3"></p>
+<p class='item-img' data-src='https://images2.imgbox.com/ec/e9/6bavsJ94_o.png'><img src="https://images2.imgbox.com/ec/e9/6bavsJ94_o.png" alt="成果圖片4"></p>
+<h1 id="Entity-格式和專案功能"><a href="#Entity-格式和專案功能" class="headerlink" title="Entity 格式和專案功能"></a>Entity 格式和專案功能</h1><h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>String</td>
+<td>唯一的 id</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>電子郵件</td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>密碼</td>
+</tr>
+</tbody></table>
+<h2 id="Product"><a href="#Product" class="headerlink" title="Product"></a>Product</h2><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一的 id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>商品名稱</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>商品描述</td>
+</tr>
+<tr>
+<td>price</td>
+<td>Integer</td>
+<td>價格</td>
+</tr>
+<tr>
+<td>image</td>
+<td>String</td>
+<td>商品圖片存放的網址</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>商品的類別</td>
+</tr>
+</tbody></table>
+<h2 id="Cart"><a href="#Cart" class="headerlink" title="Cart"></a>Cart</h2><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一的 id</td>
+</tr>
+<tr>
+<td>user</td>
+<td>User</td>
+<td>關聯到用戶，用來將購物車與用戶的資訊連接</td>
+</tr>
+<tr>
+<td>cartItems</td>
+<td>Set</td>
+<td>購物車內的商品</td>
+</tr>
+<tr>
+<td>totalPrice</td>
+<td>Integer</td>
+<td>購物車內的商品的總價格</td>
+</tr>
+<tr>
+<td>totalQuantity</td>
+<td>Integer</td>
+<td>購物車內的商品數量</td>
+</tr>
+</tbody></table>
+<h2 id="CartItem"><a href="#CartItem" class="headerlink" title="CartItem"></a>CartItem</h2><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一的 id</td>
+</tr>
+<tr>
+<td>cart</td>
+<td>Cart</td>
+<td>關聯到購物車，將 Cart 與 CartItem 的資訊連接</td>
+</tr>
+<tr>
+<td>product</td>
+<td>Product</td>
+<td>關聯到商品，將 Product 與 CartItem 的資訊連接</td>
+</tr>
+<tr>
+<td>price</td>
+<td>Integer</td>
+<td>商品的價格</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Integer</td>
+<td>商品的數量</td>
+</tr>
+</tbody></table>
+<h2 id="Order"><a href="#Order" class="headerlink" title="Order"></a>Order</h2><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一的 id</td>
+</tr>
+<tr>
+<td>sessionId</td>
+<td>String</td>
+<td>Stripe API 的 Session ID</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Integer</td>
+<td>Stripe 顯示的結帳金額</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Stripe 的支付連結</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>Long</td>
+<td>紀錄訂單所屬用戶</td>
+</tr>
+</tbody></table>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><table>
+<thead>
+<tr>
+<th>路徑</th>
+<th>HTTP 請求方法</th>
+<th>說明</th>
+<th>Request body</th>
+<th>Request header</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;auth&#x2F;signup</td>
+<td>POST</td>
+<td>註冊</td>
+<td>User</td>
+<td>無</td>
+</tr>
+<tr>
+<td>&#x2F;auth&#x2F;login</td>
+<td>POST</td>
+<td>登入</td>
+<td>User</td>
+<td>無</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;user&#x2F;</td>
+<td>GET</td>
+<td>取得目前登入的用戶資訊</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;product&#x2F;</td>
+<td>POST</td>
+<td>建立商品</td>
+<td>Product</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;product&#x2F;{id}</td>
+<td>DELETE</td>
+<td>刪除商品</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;product&#x2F;{id}</td>
+<td>GET</td>
+<td>取得商品</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;product&#x2F;?minPrice&#x3D;&amp;maxPrice&#x3D;&amp;category&#x3D;&amp;sort&#x3D;&amp;pageNumber&#x3D;&amp;pageSize&#x3D;</td>
+<td>GET</td>
+<td>根據條件篩選並分頁商品</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;cart&#x2F;</td>
+<td>GET</td>
+<td>取得購物車的內容</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;cart&#x2F;add</td>
+<td>PUT</td>
+<td>將商品加入購物車</td>
+<td>AddItemRequest</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;cartItem&#x2F;{cartItemId}</td>
+<td>PUT</td>
+<td>修改購物車內的商品數量</td>
+<td>CartItem</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;cartItem&#x2F;{cartItemId}</td>
+<td>DELETE</td>
+<td>刪除購物車內的商品</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;order&#x2F;create_session</td>
+<td>GET</td>
+<td>建立 Stripe 支付 Session</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+<tr>
+<td>&#x2F;api&#x2F;order&#x2F;find_order</td>
+<td>GET</td>
+<td>找尋該用戶的所有訂單</td>
+<td>無</td>
+<td>JWT</td>
+</tr>
+</tbody></table>
+<h1 id="專案建立"><a href="#專案建立" class="headerlink" title="專案建立"></a>專案建立</h1><p>完成安裝設定後，下載並解壓縮專案。</p>
+<p class='item-img' data-src='https://images2.imgbox.com/67/c8/vqLPO4jJ_o.png'><img src="https://images2.imgbox.com/67/c8/vqLPO4jJ_o.png" alt="專案建立"></p>
+<h1 id="連接資料庫"><a href="#連接資料庫" class="headerlink" title="連接資料庫"></a>連接資料庫</h1><p>打開 MySQL Client（使用 MariaDB），輸入以下指令建立資料庫：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> DATABASE cart_db;<br></code></pre></td></tr></table></figure>
+
+<p>在 <code>application.properties</code> 中添加：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.datasource.url</span>=<span class="hljs-string">jdbc:mariadb://localhost:3306/cart_db</span><br><span class="hljs-attr">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">spring.datasource.password</span>=<span class="hljs-string">密碼</span><br><span class="hljs-attr">spring.datasource.driver-class-name</span>=<span class="hljs-string">org.mariadb.jdbc.Driver</span><br><br><span class="hljs-attr">spring.jpa.hibernate.ddl-auto</span>=<span class="hljs-string">update</span><br><span class="hljs-attr">spring.jpa.show-sql</span>=<span class="hljs-string">true</span><br></code></pre></td></tr></table></figure>
+
+<p>啟動專案確認連接狀況。</p>
+<p>不過，將密碼直接寫在 <code>application.properties</code> 中有安全風險，在使用 Git 時，可能會不小心將密碼洩露到 GitHub。舉例來說，可以在 GitHub 上搜尋 <code>datasource.password</code>，會發現有些人的密碼被洩露了。</p>
+<p class='item-img' data-src='https://images2.imgbox.com/9d/62/XouuKdel_o.png'><img src="https://images2.imgbox.com/9d/62/XouuKdel_o.png" alt="密碼洩露例子"></p>
+<p>建議在專案根目錄（與 <code>pom.xml</code> 同層）建立 <code>.env</code>（無副檔名）檔案，並寫入密碼：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">DATASOURCE_PASSWORD</span>=<span class="hljs-string">密碼</span><br></code></pre></td></tr></table></figure>
+
+<p>接著改寫 <code>application.properties</code> 的部分配置：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.config.import</span>=<span class="hljs-string">file:.env[.properties]</span><br><br><span class="hljs-attr">spring.datasource.url</span>=<span class="hljs-string">jdbc:mariadb://localhost:3306/cart_db</span><br><span class="hljs-attr">spring.datasource.username</span>=<span class="hljs-string">root</span><br></code></pre></td></tr></table></figure>
+
+<p>最後對應 <code>.env</code> 中的內容，讀取 <code>DATASOURCE_PASSWORD</code>：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.datasource.password</span>=<span class="hljs-string">$&#123;DATASOURCE_PASSWORD&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>確認專案是否正常連接資料庫。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/25/spring-boot-pop-16/">← Next Spring Boot project-oriented programming（16） 從零開始打造電商購物車系統：Spring Security設定</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/23/spring-boot-pop-14/">Spring Boot project-oriented programming（14）會員註冊與登入系統：登出和自訂驗證系統 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E5%80%91%E7%9A%84%E5%84%AA%E9%BB%9E"><span class="toc-number">1.</span> <span class="toc-text">我們的優點</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E5%80%91%E7%9A%84%E7%BC%BA%E9%BB%9E"><span class="toc-number">2.</span> <span class="toc-text">我們的缺點</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA%EF%BC%88%E9%9C%80%E6%90%AD%E9%85%8D-Vue-js-%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">成果展示（需搭配 Vue.js 部分）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Entity-%E6%A0%BC%E5%BC%8F%E5%92%8C%E5%B0%88%E6%A1%88%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">Entity 格式和專案功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#User"><span class="toc-number">4.1.</span> <span class="toc-text">User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Product"><span class="toc-number">4.2.</span> <span class="toc-text">Product</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cart"><span class="toc-number">4.3.</span> <span class="toc-text">Cart</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CartItem"><span class="toc-number">4.4.</span> <span class="toc-text">CartItem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Order"><span class="toc-number">4.5.</span> <span class="toc-text">Order</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">4.6.</span> <span class="toc-text">功能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B"><span class="toc-number">5.</span> <span class="toc-text">專案建立</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB"><span class="toc-number">6.</span> <span class="toc-text">連接資料庫</span></a></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

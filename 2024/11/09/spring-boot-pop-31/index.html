@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（31）Vue.js 打造 RESTful API前端：打包並部署到Linux | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（31）Vue.js 打造 RESTful API前端：打包並部署到Linux</h1></div><hr><div id="post-content"><h1 id="打包-Vue-專案"><a href="#打包-Vue-專案" class="headerlink" title="打包 Vue 專案"></a>打包 Vue 專案</h1><p>修改 <code>vite.config.js</code>，新增 <code>base: &#39;./&#39;</code>，使專案使用相對路徑而非絕對路徑。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-title function_">vue</span>(),<br>  ],<br>  <span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">alias</span>: &#123;<br>      <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-title function_">fileURLToPath</span>(<span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;./src&#x27;</span>, <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">url</span>))<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">base</span>: <span class="hljs-string">&#x27;./&#x27;</span>,<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>接著，輸入以下指令打包專案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bun run build<br></code></pre></td></tr></table></figure>
+
+<h1 id="在-Linux-部署專案"><a href="#在-Linux-部署專案" class="headerlink" title="在 Linux 部署專案"></a>在 Linux 部署專案</h1><p>將打包好的 Vue 專案和後端的 JAR 檔案上傳至 Linux VPS中，使用Ubuntu作為範例。</p>
+<h2 id="後端設定"><a href="#後端設定" class="headerlink" title="後端設定"></a>後端設定</h2><h3 id="安裝-MariaDB"><a href="#安裝-MariaDB" class="headerlink" title="安裝 MariaDB"></a>安裝 MariaDB</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install mariadb-server<br></code></pre></td></tr></table></figure>
+
+<p>設定開機時自動啟動 MariaDB：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> mariadb<br></code></pre></td></tr></table></figure>
+
+<p>進行資料庫的初始設定：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> mysql_secure_installation<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>初次安裝時，密碼為空，直接按 Enter。</li>
+<li>Switch to unix_socket authentication [Y&#x2F;n]: <code>n</code></li>
+<li>Change the root password? [Y&#x2F;n]: <code>y</code></li>
+<li>Remove anonymous users? [Y&#x2F;n]: <code>y</code></li>
+<li>Disallow root login remotely? [Y&#x2F;n]: <code>y</code></li>
+<li>Remove test database and access to it? [Y&#x2F;n]: <code>y</code></li>
+<li>Reload privilege tables now? [Y&#x2F;n]: <code>y</code></li>
+</ul>
+<p>設定完成後，登入 MariaDB 並建立 <code>cart_db</code> 資料庫：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">mariadb --user root --password<br>CREATE DATABASE cart_db;<br><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="啟動後端應用"><a href="#啟動後端應用" class="headerlink" title="啟動後端應用"></a>啟動後端應用</h3><p>執行後端的 JAR 檔案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">java -jar shopping_cart_project-0.0.1-SNAPSHOT.jar<br></code></pre></td></tr></table></figure>
+
+<p>確保 <code>.env</code> 檔與 JAR 檔放在同一資料夾中。</p>
+<h2 id="前端設定"><a href="#前端設定" class="headerlink" title="前端設定"></a>前端設定</h2><h3 id="安裝與設定-Nginx"><a href="#安裝與設定-Nginx" class="headerlink" title="安裝與設定 Nginx"></a>安裝與設定 Nginx</h3><p>安裝 Nginx 來顯示 Vue 專案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install nginx<br></code></pre></td></tr></table></figure>
+
+<p>修改 <code>/etc/nginx/sites-available/default</code>，將預設的 port 80 改為 5173：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/nginx/sites-available/default<br></code></pre></td></tr></table></figure>
+
+<p>找到以下部分：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span> default_server;<br>    <span class="hljs-attribute">listen</span> [::]:<span class="hljs-number">80</span> default_server;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>將 <code>80</code> 改為 <code>5173</code>，並儲存離開。</p>
+<p>重新啟動 Nginx 使更改生效，並設定開機自動啟動：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx<br><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> nginx<br></code></pre></td></tr></table></figure>
+
+<p>將 Vue 專案的 <code>dist</code> 資料夾內的內容（如 <code>assets</code> 資料夾、<code>favicon.ico</code>、<code>index.html</code>）複製到 VPS 的 <code>/usr/share/nginx/html</code> 中。</p>
+<p>確認後端正常運作後，訪問 <code>VPS_IP:5173</code> 即可查看部署成功的前端介面。</p>
+<h3 id="維持後端運作"><a href="#維持後端運作" class="headerlink" title="維持後端運作"></a>維持後端運作</h3><p>使用 <code>tmux</code> 來讓後端在 SSH 連線中斷後仍持續運作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">tmux<br>java -jar shopping_cart_project-0.0.1-SNAPSHOT.jar<br></code></pre></td></tr></table></figure>
+
+<p>若需要停止後端運作，重新連線並輸入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tmux attach -t 0<br></code></pre></td></tr></table></figure>
+
+<p>在此工作階段中按下 <code>Ctrl+C</code> 後輸入 <code>exit</code> 以結束。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/11/10/puttygen-generate-key/">← Next 使用PuTTYgen產生金鑰</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/11/08/spring-boot-pop-30/">Spring Boot project-oriented programming（30）Vue.js 打造 RESTful API前端：購物車和導入SSL Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%93%E5%8C%85-Vue-%E5%B0%88%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">打包 Vue 專案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8-Linux-%E9%83%A8%E7%BD%B2%E5%B0%88%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">在 Linux 部署專案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%8C%E7%AB%AF%E8%A8%AD%E5%AE%9A"><span class="toc-number">2.1.</span> <span class="toc-text">後端設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-MariaDB"><span class="toc-number">2.1.1.</span> <span class="toc-text">安裝 MariaDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%9F%E5%8B%95%E5%BE%8C%E7%AB%AF%E6%87%89%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">啟動後端應用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E8%A8%AD%E5%AE%9A"><span class="toc-number">2.2.</span> <span class="toc-text">前端設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A-Nginx"><span class="toc-number">2.2.1.</span> <span class="toc-text">安裝與設定 Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B6%AD%E6%8C%81%E5%BE%8C%E7%AB%AF%E9%81%8B%E4%BD%9C"><span class="toc-number">2.2.2.</span> <span class="toc-text">維持後端運作</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

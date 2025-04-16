@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（16） 從零開始打造電商購物車系統：Spring Security設定 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（16） 從零開始打造電商購物車系統：Spring Security設定</h1></div><hr><div id="post-content"><h1 id="Spring-Security-設定"><a href="#Spring-Security-設定" class="headerlink" title="Spring Security 設定"></a>Spring Security 設定</h1><p>在進行註冊與登入功能之前，我們需要先設定 Spring Security。</p>
+<p>在之前的專案中，我們曾提到 CSRF（跨站請求偽造）的問題，但當時並未真正處理。這次，我們將引入 <strong>JSON Web Token（JWT）</strong> 來解決 CSRF 攻擊的問題。</p>
+<p>JWT 是一種用來驗證使用者身份的方式，若能夠成功驗證有效的 JWT，便可確定操作來自合法使用者。這有點像古代的「尚方寶劍」，擁有尚方寶劍的人便有行使權力的資格，即使壞人拿到也能為所欲為。因此，妥善保護 JWT 的安全非常重要。</p>
+<p>接下來，我們將新增 <code>SecurityConfig.java</code>，與之前相同，透過 <code>SecurityFilterChain</code> 來設定 Spring Security。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityConfig</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> SecurityFilterChain <span class="hljs-title function_">securityFilterChain</span><span class="hljs-params">(HttpSecurity httpSecurity)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br></code></pre></td></tr></table></figure>
+
+<h3 id="無狀態-Session-設定"><a href="#無狀態-Session-設定" class="headerlink" title="無狀態 Session 設定"></a>無狀態 Session 設定</h3><p>將 session 設定為無狀態（Stateless），這表示後端不會再使用或儲存 session。前端需自行保存所需的資料，並在每次請求時傳送必要的資訊（如 Token）給後端，代表保持登入的功能完全由前端管理。</p>
+<p>若前端未傳送 Token 至後端，則後端將視為未登入狀態，不論之前是否有登入過。這樣的設計能降低後端伺服器的負擔，避免因 session 儲存過多而占滿硬碟空間，以及降低 session 讀取時的 CPU 使用率。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">httpSecurity.sessionManagement(session -&gt; session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))<br></code></pre></td></tr></table></figure>
+
+<h3 id="設定-API-權限"><a href="#設定-API-權限" class="headerlink" title="設定 API 權限"></a>設定 API 權限</h3><p>以 <code>/api</code> 開頭的 API 端點需要驗證權限，其餘端點則無須驗證，允許所有請求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">.authorizeHttpRequests(authorizeHttpRequests -&gt; authorizeHttpRequests.requestMatchers(<span class="hljs-string">&quot;/api/**&quot;</span>).authenticated().anyRequest().permitAll())<br></code></pre></td></tr></table></figure>
+
+<p>以下網址無須驗證，可直接訪問：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:8080/hello/">http://localhost:8080/hello/</a> ✔️</li>
+<li><a target="_blank" rel="noopener" href="http://localhost:8080/test/">http://localhost:8080/test/</a> ✔️</li>
+</ul>
+<p>以下網址需通過驗證：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:8080/api/">http://localhost:8080/api/</a> ⚠️</li>
+<li><a target="_blank" rel="noopener" href="http://localhost:8080/api/hello">http://localhost:8080/api/hello</a> ⚠️</li>
+</ul>
+<h3 id="關閉-CSRF-保護"><a href="#關閉-CSRF-保護" class="headerlink" title="關閉 CSRF 保護"></a>關閉 CSRF 保護</h3><p>我們將關閉 Spring Security 的 CSRF 防護，因為之後會使用 JWT 來防範 CSRF 攻擊。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">.csrf(csrf -&gt; csrf.disable())<br></code></pre></td></tr></table></figure>
+
+<h2 id="CORS-設定"><a href="#CORS-設定" class="headerlink" title="CORS 設定"></a>CORS 設定</h2><p>雖然這個 Spring Boot 專案只實現後端部分，但若將來需要讓前端訪問後端，可能會遇到 CORS（跨來源資源共享）相關的錯誤。後端可以預先配置 CORS 設定，便於前端與後端的通訊。以下設定僅供參考，不必加入到 <code>SecurityConfig</code> 中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">.cors(cors -&gt; cors.configurationSource(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CorsConfigurationSource</span>() &#123;<br>                    <span class="hljs-meta">@Override</span><br>                    <span class="hljs-keyword">public</span> CorsConfiguration <span class="hljs-title function_">getCorsConfiguration</span><span class="hljs-params">(HttpServletRequest request)</span> &#123;<br>                        <span class="hljs-type">CorsConfiguration</span> <span class="hljs-variable">config</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CorsConfiguration</span>();<br></code></pre></td></tr></table></figure>
+
+<p>允許的前端網址來源：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">config.setAllowedOrigins(Arrays.asList(<br>                                <span class="hljs-string">&quot;前端的網址，例如 http://localhost:5173&quot;</span><br>                        ));<br></code></pre></td></tr></table></figure>
+
+<p>允許的 HTTP 請求方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">config.setAllowedMethods(Arrays.asList(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">&quot;POST&quot;</span>, <span class="hljs-string">&quot;PUT&quot;</span>, <span class="hljs-string">&quot;DELETE&quot;</span>));<br>                        config.setAllowCredentials(<span class="hljs-literal">true</span>);<br></code></pre></td></tr></table></figure>
+
+<p>設定允許 JWT 通過的 HTTP 標頭：</p>
+<p>第一層過濾 HTTP 標頭：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">config.setExposedHeaders(Arrays.asList(<span class="hljs-string">&quot;Authorization&quot;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>第二層過濾 HTTP 標頭：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">config.setAllowedHeaders(Arrays.asList(<span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Content-Type&quot;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>設置過濾有效時間，3600 秒內不會重複檢查同樣的請求：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">        config.setMaxAge(<span class="hljs-number">3600L</span>);<br>        <span class="hljs-keyword">return</span> config;<br>    &#125;<br>&#125;));<br></code></pre></td></tr></table></figure>
+
+<h3 id="設定密碼雜湊演算法"><a href="#設定密碼雜湊演算法" class="headerlink" title="設定密碼雜湊演算法"></a>設定密碼雜湊演算法</h3><p>使用 BCrypt 作為密碼雜湊函式，可調整雜湊的強度，例如將值從 10 提高到更大的數字，以增加安全性，但同時會耗費更多計算資源來雜湊密碼。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> PasswordEncoder <span class="hljs-title function_">passwordEncoder</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BCryptPasswordEncoder</span>(<span class="hljs-number">10</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/26/spring-boot-pop-17/">← Next Spring Boot project-oriented programming（17） 從零開始打造電商購物車系統：JWT設定</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/24/spring-boot-pop-15/">Spring Boot project-oriented programming（15） 從零開始打造電商購物車系統：專案結構與資料庫連接詳解 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Security-%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.</span> <span class="toc-text">Spring Security 設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%84%A1%E7%8B%80%E6%85%8B-Session-%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.0.1.</span> <span class="toc-text">無狀態 Session 設定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-API-%E6%AC%8A%E9%99%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">設定 API 權限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%9C%E9%96%89-CSRF-%E4%BF%9D%E8%AD%B7"><span class="toc-number">1.0.3.</span> <span class="toc-text">關閉 CSRF 保護</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CORS-%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">CORS 設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A%E5%AF%86%E7%A2%BC%E9%9B%9C%E6%B9%8A%E6%BC%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">設定密碼雜湊演算法</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

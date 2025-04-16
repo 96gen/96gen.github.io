@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（4）API專案 連接資料庫 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（4）API專案 連接資料庫</h1></div><hr><div id="post-content"><h1 id="專案實作說明"><a href="#專案實作說明" class="headerlink" title="專案實作說明"></a>專案實作說明</h1><p>我們已經完成了專案的設計階段，現在將正式開始實作。</p>
+<hr>
+<h2 id="1-建立專案"><a href="#1-建立專案" class="headerlink" title="1. 建立專案"></a>1. 建立專案</h2><p>前往 <a target="_blank" rel="noopener" href="https://start.spring.io/">Spring Initializr</a> 產生一個新專案，以下是設定範例：  </p>
+<ul>
+<li><strong>Project:</strong> Maven</li>
+<li><strong>Language:</strong> Java  </li>
+<li><strong>Spring Boot:</strong> 3.x 最新版  </li>
+<li><strong>Dependencies:</strong>  <ul>
+<li>Spring Data JPA  </li>
+<li>H2 Database  </li>
+<li>Spring Boot DevTools</li>
+</ul>
+</li>
+</ul>
+<p>依照需求調整後，點擊 <strong>Generate</strong> 下載專案。  </p>
+<p class='item-img' data-src='https://images2.imgbox.com/cb/73/L5O4gW9g_o.png'><img src="https://images2.imgbox.com/cb/73/L5O4gW9g_o.png"></p>
+<hr>
+<h3 id="使用到的-Dependencies-簡介"><a href="#使用到的-Dependencies-簡介" class="headerlink" title="使用到的 Dependencies 簡介"></a>使用到的 Dependencies 簡介</h3><h4 id="1-Spring-Data-JPA"><a href="#1-Spring-Data-JPA" class="headerlink" title="1. Spring Data JPA"></a>1. <strong>Spring Data JPA</strong></h4><p>提供 ORM 功能，讓 Java 程式碼和資料庫表結構能夠自動對應。<br>使用 Spring Data JPA，我們可以不必手動撰寫 SQL 指令，即可完成資料庫操作，如 CRUD（新增、查詢、更新、刪除）。</p>
+<h4 id="2-H2-Database"><a href="#2-H2-Database" class="headerlink" title="2. H2 Database"></a>2. <strong>H2 Database</strong></h4><p>H2 是一個輕量級資料庫，方便測試用途，資料存在記憶體中，系統重啟後資料會消失，適合作為開發階段的臨時資料庫。</p>
+<h4 id="3-Spring-Boot-DevTools"><a href="#3-Spring-Boot-DevTools" class="headerlink" title="3. Spring Boot DevTools"></a>3. <strong>Spring Boot DevTools</strong></h4><p>支援程式自動重載，在我們修改程式碼後，專案會立即重新編譯執行，提升開發效率。</p>
+<hr>
+<h2 id="2-設定資料庫連接"><a href="#2-設定資料庫連接" class="headerlink" title="2. 設定資料庫連接"></a>2. 設定資料庫連接</h2><p>下載專案後開啟，等候 IntelliJ 或 Eclipse 完成建置。  </p>
+<p>進入 <code>src/main/resources/application.properties</code>，新增以下設定內容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"># 資料庫連接<br>spring.datasource.url=jdbc:h2:mem:todo_db<br>spring.datasource.driver-class-name=org.h2.Driver<br>spring.datasource.username=sa<br>spring.datasource.password=password<br><br># 啟用 H2 資料庫控制台<br>spring.h2.console.enabled=true<br>spring.h2.console.path=/h2<br><br># JPA 和 Hibernate 設定<br>spring.jpa.hibernate.ddl-auto=update<br>spring.jpa.show-sql=true<br></code></pre></td></tr></table></figure>
+
+<h3 id="參數說明"><a href="#參數說明" class="headerlink" title="參數說明"></a>參數說明</h3><ul>
+<li>**<code>spring.datasource.url</code>**：定義要連接的資料庫，<code>mem</code> 表示儲存在記憶體中，<code>todo_db</code> 是資料庫名稱。</li>
+<li>**<code>spring.datasource.username</code> &amp; <code>spring.datasource.password</code>**：定義使用者名稱和密碼。H2 允許自定義這些值，在這裡分別設定為 <code>sa</code> 和 <code>password</code>。</li>
+<li>**<code>spring.h2.console.enabled</code>**：開啟 H2 資料庫的瀏覽器控制台。</li>
+<li>**<code>spring.h2.console.path</code>**：指定控制台的存取路徑為 <code>/h2</code>。</li>
+<li>**<code>spring.jpa.hibernate.ddl-auto=update</code>**：自動同步資料表結構與程式內的 ORM 模型。</li>
+<li>**<code>spring.jpa.show-sql=true</code>**：讓 SQL 指令顯示在控制台中，方便除錯。</li>
+</ul>
+<hr>
+<h2 id="3-啟動專案並驗證連接"><a href="#3-啟動專案並驗證連接" class="headerlink" title="3. 啟動專案並驗證連接"></a>3. 啟動專案並驗證連接</h2><p>完成設定後，啟動專案。在瀏覽器中前往 <a target="_blank" rel="noopener" href="http://localhost:8080/h2">http://localhost:8080/h2</a>。  </p>
+<p>輸入以下資訊來登入資料庫管理介面：  </p>
+<ul>
+<li><strong>JDBC URL</strong>：<code>jdbc:h2:mem:todo_db</code>  </li>
+<li><strong>User Name</strong>：<code>sa</code>  </li>
+<li><strong>Password</strong>：<code>password</code></li>
+</ul>
+<p>點擊 <strong>Connect</strong> 進入管理頁面，確認專案與資料庫連接正常。  </p>
+<p class='item-img' data-src='https://images2.imgbox.com/da/0b/8A3GM2tP_o.png'><img src="https://images2.imgbox.com/da/0b/8A3GM2tP_o.png"></p>
+<hr>
+<h2 id="4-測試與後續開發"><a href="#4-測試與後續開發" class="headerlink" title="4. 測試與後續開發"></a>4. 測試與後續開發</h2><p>專案啟動成功後，我們可以繼續進行資料表的設計與資料操作測試。若 ORM 模型變更，系統會自動更新資料表結構，無須手動調整。</p>
+<hr>
+<p>這樣就完成了專案的初始設置，我們可以進一步撰寫資料模型與 API 來擴展功能。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/14/spring-boot-pop-05/">← Next Spring Boot project-oriented programming（5）API專案 實作</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/12/spring-boot-pop-03/">Spring Boot project-oriented programming（3）API專案 概念 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E5%AF%A6%E4%BD%9C%E8%AA%AA%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">專案實作說明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">1. 建立專案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84-Dependencies-%E7%B0%A1%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用到的 Dependencies 簡介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Spring-Data-JPA"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1. Spring Data JPA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-H2-Database"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2. H2 Database</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Spring-Boot-DevTools"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">3. Spring Boot DevTools</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A8%AD%E5%AE%9A%E8%B3%87%E6%96%99%E5%BA%AB%E9%80%A3%E6%8E%A5"><span class="toc-number">1.2.</span> <span class="toc-text">2. 設定資料庫連接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%83%E6%95%B8%E8%AA%AA%E6%98%8E"><span class="toc-number">1.2.1.</span> <span class="toc-text">參數說明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%95%9F%E5%8B%95%E5%B0%88%E6%A1%88%E4%B8%A6%E9%A9%97%E8%AD%89%E9%80%A3%E6%8E%A5"><span class="toc-number">1.3.</span> <span class="toc-text">3. 啟動專案並驗證連接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B8%AC%E8%A9%A6%E8%88%87%E5%BE%8C%E7%BA%8C%E9%96%8B%E7%99%BC"><span class="toc-number">1.4.</span> <span class="toc-text">4. 測試與後續開發</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

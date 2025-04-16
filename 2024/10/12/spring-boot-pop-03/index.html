@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（3）API專案 概念 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（3）API專案 概念</h1></div><hr><div id="post-content"><p>接下來，我們將深入探討 Spring Boot 的應用。大多數 Spring Boot 專案都涉及 RESTful API 的開發，可以說，學會如何完成一個 RESTful API 專案，就相當於掌握了許多 Spring Boot 專案的核心。</p>
+<p>我們這次的 RESTful API 專案是一個待辦事項清單（Todo List），也就是「待辦事項系統」。大家可以思考這個專案應具備哪些功能，以下是我的設計思路，供各位參考。</p>
+<h1 id="設計思路"><a href="#設計思路" class="headerlink" title="設計思路"></a>設計思路</h1><p>這個專案的核心部分是待辦事項（Todo）。我們應該如何設計這個待辦事項呢？</p>
+<h2 id="Todo-項目"><a href="#Todo-項目" class="headerlink" title="Todo 項目"></a>Todo 項目</h2><p>每個待辦事項應該包含以下幾個要素：</p>
+<ul>
+<li>一個唯一的 <code>id</code> 以便於資料庫查詢</li>
+<li>一個 <code>title</code> 用來描述待辦的事項</li>
+<li>一個 <code>completed</code> 用來表示該事項是否已完成</li>
+</ul>
+<h2 id="專案功能"><a href="#專案功能" class="headerlink" title="專案功能"></a>專案功能</h2><p>接著，我們進行功能規劃：</p>
+<ul>
+<li><p><strong>新增 Todo</strong></p>
+<p>待辦事項清單必然需要新增事項的功能，這部分的資料應透過 JSON 格式傳送，而不是 URL。因為 URL 的長度限制為 1024 字元，若 <code>title</code> 過長（例如，肌聯蛋白，其全名包含 189819 個字母），則會導致資料截斷。使用 JSON 傳送資料則不會有這個問題。</p>
+<p>功能路徑：<code>/</code></p>
+</li>
+<li><p><strong>查看所有 Todo</strong></p>
+<p>當我們新增了待辦事項後，通常會想檢視它們是否成功儲存在資料庫中，因此這項功能非常重要。</p>
+<p>功能路徑：<code>/all</code></p>
+</li>
+<li><p><strong>查看特定 id 的 Todo</strong></p>
+<p>有時候我們只需要查詢單一待辦事項，可以透過 URL 傳送 id，而這個 id 不會超過 1024 字元。</p>
+<p>功能路徑：<code>/&#123;id&#125;</code></p>
+</li>
+<li><p><strong>刪除特定 id 的 Todo</strong></p>
+<p>既然有新增功能，自然也會有刪除功能。刪除時需要指定 id，以防不小心刪除所有事項。</p>
+<p>功能路徑：<code>/&#123;id&#125;</code></p>
+</li>
+<li><p><strong>修改特定 id 的 Todo</strong></p>
+<p>當新增時出現錯誤或需要更新資訊時，我們應該能修改待辦事項的內容，資料透過 JSON 傳送。</p>
+<p>功能路徑：<code>/&#123;id&#125;</code></p>
+</li>
+<li><p><strong>標記 Todo 為完成</strong></p>
+<p>當某項待辦事項完成時，需要有一個功能來標記它已完成，這可以透過 URL 傳送 id。</p>
+<p>功能路徑：<code>/&#123;id&#125;/completed</code></p>
+</li>
+<li><p><strong>標記 Todo 為未完成</strong></p>
+<p>既然有標記為完成的功能，當然也需要標記為未完成的功能，同樣透過 URL 傳送 id。</p>
+<p>功能路徑：<code>/&#123;id&#125;/uncompleted</code></p>
+</li>
+</ul>
+<p>這些基本功能幾乎完成了專案的 50%，接下來只剩實作部分。有些人可能會疑惑這些設計和專案的關係，接下來我會用表格的形式來幫助大家理解這些功能設計。</p>
+<h1 id="Entity-格式與專案功能"><a href="#Entity-格式與專案功能" class="headerlink" title="Entity 格式與專案功能"></a><strong>Entity 格式與專案功能</strong></h1><h2 id="Todo-Entity-格式"><a href="#Todo-Entity-格式" class="headerlink" title="Todo Entity 格式"></a>Todo Entity 格式</h2><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一的 id，方便資料庫查詢</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>用來描述待辦事項</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>Boolean</td>
+<td>表示是否已完成</td>
+</tr>
+</tbody></table>
+<h2 id="專案功能對應表"><a href="#專案功能對應表" class="headerlink" title="專案功能對應表"></a>專案功能對應表</h2><table>
+<thead>
+<tr>
+<th>路徑</th>
+<th>HTTP Request Method</th>
+<th>功能說明</th>
+<th>Request Body</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;</td>
+<td>POST</td>
+<td>新增 Todo</td>
+<td>Todo</td>
+</tr>
+<tr>
+<td>&#x2F;all</td>
+<td>GET</td>
+<td>查看所有待辦事項</td>
+<td>無</td>
+</tr>
+<tr>
+<td>&#x2F;{id}</td>
+<td>GET</td>
+<td>查看指定 id 的 Todo</td>
+<td>無</td>
+</tr>
+<tr>
+<td>&#x2F;{id}</td>
+<td>DELETE</td>
+<td>刪除指定 id 的 Todo</td>
+<td>無</td>
+</tr>
+<tr>
+<td>&#x2F;{id}</td>
+<td>PUT</td>
+<td>修改指定 id 的 Todo</td>
+<td>Todo</td>
+</tr>
+<tr>
+<td>&#x2F;{id}&#x2F;completed</td>
+<td>PATCH</td>
+<td>標記 Todo 為完成</td>
+<td>無</td>
+</tr>
+<tr>
+<td>&#x2F;{id}&#x2F;uncompleted</td>
+<td>PATCH</td>
+<td>標記 Todo 為未完成</td>
+<td>無</td>
+</tr>
+</tbody></table>
+<p>在這裡，Request Body 是用來傳輸 Todo 內容至專案中的。</p>
+<h1 id="RESTful-API-的核心"><a href="#RESTful-API-的核心" class="headerlink" title="RESTful API 的核心"></a>RESTful API 的核心</h1><p>有些人可能會認為路徑設計有些重複，但其實是透過不同的 HTTP request method 來區分不同的功能。</p>
+<p>RESTful API 的核心理念是根據 HTTP request method 和 URL 來決定不同的操作結果。舉例來說，就像垃圾分類桶一樣，雖然是同一個桶子（URL），但根據不同的入口（HTTP request method），垃圾會被分類成資源回收或一般垃圾（例如：查看、刪除或修改指定 id 的待辦事項）。</p>
+<p class='item-img' data-src='https://images2.imgbox.com/61/c7/ekDPSLU3_o.jpeg'><img src="https://images2.imgbox.com/61/c7/ekDPSLU3_o.jpeg"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/13/spring-boot-pop-04/">← Next Spring Boot project-oriented programming（4）API專案 連接資料庫</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/11/spring-boot-pop-02/">Spring Boot project-oriented programming（2）Hello World Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A8%AD%E8%A8%88%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">設計思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Todo-%E9%A0%85%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">Todo 項目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.</span> <span class="toc-text">專案功能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Entity-%E6%A0%BC%E5%BC%8F%E8%88%87%E5%B0%88%E6%A1%88%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">Entity 格式與專案功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Todo-Entity-%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">Todo Entity 格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E5%8A%9F%E8%83%BD%E5%B0%8D%E6%87%89%E8%A1%A8"><span class="toc-number">2.2.</span> <span class="toc-text">專案功能對應表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RESTful-API-%E7%9A%84%E6%A0%B8%E5%BF%83"><span class="toc-number">3.</span> <span class="toc-text">RESTful API 的核心</span></a></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

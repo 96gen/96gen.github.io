@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（8）使用MongoDB打造全端專案 規劃 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（8）使用MongoDB打造全端專案 規劃</h1></div><hr><div id="post-content"><p>我們已經完成了兩個專案（不包含Hello World），這些專案皆透過API測試工具 <strong>Hoppscotch</strong> 進行測試與驗證。本次專案將進一步提升使用者的操作體驗，取消API測試工具的依賴，並改以網頁介面進行資料的新增、修改和刪除操作。</p>
+<p>我們將採用性能更佳的 <strong>MongoDB</strong> 作為資料庫系統，它是一種NoSQL資料庫，能以文件形式儲存資料，簡化了資料結構與設計。</p>
+<hr>
+<h2 id="專案介紹"><a href="#專案介紹" class="headerlink" title="專案介紹"></a>專案介紹</h2><p>此專案的目標是建立一個全端的<strong>客戶管理系統</strong>，包含前端和後端開發。我們將以MongoDB為基礎儲存資料，並使用Spring Boot框架處理系統邏輯及與資料庫的互動。</p>
+<hr>
+<h2 id="Document格式與專案功能設計"><a href="#Document格式與專案功能設計" class="headerlink" title="Document格式與專案功能設計"></a>Document格式與專案功能設計</h2><h3 id="Customer-資料結構"><a href="#Customer-資料結構" class="headerlink" title="Customer 資料結構"></a><strong>Customer 資料結構</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>String</td>
+<td>唯一的識別碼，使用UUID</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>String</td>
+<td>名</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>String</td>
+<td>姓</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>電子信箱</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="API-路由與功能"><a href="#API-路由與功能" class="headerlink" title="API 路由與功能"></a><strong>API 路由與功能</strong></h3><table>
+<thead>
+<tr>
+<th>路徑</th>
+<th>HTTP方法</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td>GET</td>
+<td>取得全部客戶資料</td>
+</tr>
+<tr>
+<td><code>/new</code></td>
+<td>GET</td>
+<td>顯示新增客戶的頁面</td>
+</tr>
+<tr>
+<td><code>/new</code></td>
+<td>POST</td>
+<td>新增客戶資料</td>
+</tr>
+<tr>
+<td><code>/view/&#123;id&#125;</code></td>
+<td>GET</td>
+<td>查看單一客戶的詳細資料</td>
+</tr>
+<tr>
+<td><code>/update/&#123;id&#125;</code></td>
+<td>GET</td>
+<td>顯示修改客戶資料的頁面</td>
+</tr>
+<tr>
+<td><code>/update/&#123;id&#125;</code></td>
+<td>POST</td>
+<td>更新客戶資料</td>
+</tr>
+<tr>
+<td><code>/delete/&#123;id&#125;</code></td>
+<td>GET</td>
+<td>刪除客戶資料</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="安裝MongoDB及建立資料庫"><a href="#安裝MongoDB及建立資料庫" class="headerlink" title="安裝MongoDB及建立資料庫"></a>安裝MongoDB及建立資料庫</h2><p>完成專案設計後，請下載並安裝 <strong><a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/compass">MongoDB Compass (GUI)</a></strong> ，以便更直觀地管理MongoDB資料。  </p>
+<ol>
+<li><p>啟動MongoDB Compass，點擊 <strong>Connect</strong> 連接資料庫。  </p>
+<p class='item-img' data-src='https://images2.imgbox.com/aa/10/wfWqeF3N_o.png'><img src="https://images2.imgbox.com/aa/10/wfWqeF3N_o.png">  </p>
+</li>
+<li><p>在側邊欄點擊「**+**」，新增資料庫。  </p>
+<p class='item-img' data-src='https://images2.imgbox.com/9e/0b/Hqgb4Nkl_o.png'><img src="https://images2.imgbox.com/9e/0b/Hqgb4Nkl_o.png">  </p>
+</li>
+<li><p>在<strong>Database Name</strong>和<strong>Collection Name</strong>輸入「customer」。  </p>
+</li>
+<li><p>按下 <strong>Create Database</strong>，完成資料庫的建立，專門儲存客戶資料。  </p>
+<p class='item-img' data-src='https://images2.imgbox.com/2d/97/wMUNNiK7_o.png'><img src="https://images2.imgbox.com/2d/97/wMUNNiK7_o.png"></p>
+</li>
+</ol>
+<hr>
+<h2 id="專案開發與資料庫連接"><a href="#專案開發與資料庫連接" class="headerlink" title="專案開發與資料庫連接"></a>專案開發與資料庫連接</h2><p>建立專案時，請根據以下相依性進行設定：  </p>
+<p class='item-img' data-src='https://images2.imgbox.com/a3/7d/K0dTOU5K_o.png'><img src="https://images2.imgbox.com/a3/7d/K0dTOU5K_o.png">  </p>
+<p>我們熟悉前兩個依賴項目，而以下是專案中新增的兩個：  </p>
+<ul>
+<li><p><strong>Spring Data MongoDB</strong><br>類似於Spring Data JPA，Spring Data MongoDB簡化了與MongoDB的互動，不需手動撰寫SQL語句即可操作資料庫。  </p>
+</li>
+<li><p><strong>Validation</strong><br>用來驗證資料格式。本專案會檢查<code>firstName</code>、<code>lastName</code>和<code>email</code>是否為空，並確保<code>email</code>符合正確的電子郵件格式。  </p>
+</li>
+<li><p><strong>Thymeleaf</strong><br>這是一個模板引擎，用於處理前端網頁的呈現，支援HTML、JavaScript及CSS，並將資料動態顯示於瀏覽器中。</p>
+</li>
+</ul>
+<hr>
+<h2 id="配置資料庫連線"><a href="#配置資料庫連線" class="headerlink" title="配置資料庫連線"></a>配置資料庫連線</h2><p>下載並開啟專案，在<code>src/main/resources/application.properties</code>中新增以下內容：  </p>
+<pre><code class="properties">spring.data.mongodb.uri=mongodb://localhost:27017/customer
+</code></pre>
+<p>啟動專案，確認系統能順利連接至MongoDB並正常運行。  </p>
+<hr>
+<p>這個專案將帶領我們進一步了解MongoDB與Spring Boot的整合，讓我們在全端開發的技能上更上一層樓。準備好後，我們就可以開始撰寫程式碼，構建完整的客戶管理系統。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/18/spring-boot-pop-09/">← Next Spring Boot project-oriented programming（9）使用MongoDB打造全端專案 後端與UUID介紹</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/16/spring-boot-pop-07/">Spring Boot project-oriented programming（7）使用 MariaDB 打造RESTful API專案：從安裝到 CRUD 教學 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E4%BB%8B%E7%B4%B9"><span class="toc-number">1.</span> <span class="toc-text">專案介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Document%E6%A0%BC%E5%BC%8F%E8%88%87%E5%B0%88%E6%A1%88%E5%8A%9F%E8%83%BD%E8%A8%AD%E8%A8%88"><span class="toc-number">2.</span> <span class="toc-text">Document格式與專案功能設計</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Customer-%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B"><span class="toc-number">2.1.</span> <span class="toc-text">Customer 資料結構</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-%E8%B7%AF%E7%94%B1%E8%88%87%E5%8A%9F%E8%83%BD"><span class="toc-number">2.2.</span> <span class="toc-text">API 路由與功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9DMongoDB%E5%8F%8A%E5%BB%BA%E7%AB%8B%E8%B3%87%E6%96%99%E5%BA%AB"><span class="toc-number">3.</span> <span class="toc-text">安裝MongoDB及建立資料庫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E9%96%8B%E7%99%BC%E8%88%87%E8%B3%87%E6%96%99%E5%BA%AB%E9%80%A3%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">專案開發與資料庫連接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B3%87%E6%96%99%E5%BA%AB%E9%80%A3%E7%B7%9A"><span class="toc-number">5.</span> <span class="toc-text">配置資料庫連線</span></a></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

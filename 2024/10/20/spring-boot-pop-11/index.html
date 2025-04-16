@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（11）會員註冊與登入系統：專案設定 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（11）會員註冊與登入系統：專案設定</h1></div><hr><div id="post-content"><h1 id="為什麼不使用-csrf-disable"><a href="#為什麼不使用-csrf-disable" class="headerlink" title="為什麼不使用 csrf().disable()"></a><strong>為什麼不使用 <code>csrf().disable()</code></strong></h1><p>因為此方法已經過時，未來將不再支援。在本教學中，我們會採用符合 <strong>6.1 版規範</strong>的新寫法。</p>
+<h3 id="舊有的寫法"><a href="#舊有的寫法" class="headerlink" title="舊有的寫法"></a><strong>舊有的寫法</strong></h3><p>儘管程式能正常運作，但會顯示紅線警告：<br><strong><code>csrf()</code> 自 6.1 版後已棄用，並計劃移除。</strong></p>
+<p class='item-img' data-src='https://images2.imgbox.com/04/dd/UFs2I0GV_o.png'><img src="https://images2.imgbox.com/04/dd/UFs2I0GV_o.png"></p>
+<hr>
+<h3 id="改進後的寫法"><a href="#改進後的寫法" class="headerlink" title="改進後的寫法"></a><strong>改進後的寫法</strong></h3><p>新寫法不會出現紅線警告，僅顯示黃線，表示還有進一步最佳化的空間。</p>
+<p class='item-img' data-src='https://images2.imgbox.com/aa/96/stJ1dbst_o.png'><img src="https://images2.imgbox.com/aa/96/stJ1dbst_o.png"></p>
+<p><strong>為什麼不最佳化</strong>：<br>我認為對於新手來說，使用 <code>cors → cors.disable()</code> 這類寫法比較簡單，且更易於應用到其他情境。例如：</p>
+<p>若要設定 <code>.authorizeHttpRequests</code>，可以類推出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">.authorizeHttpRequests(authorize -&gt; authorize.一些設定)<br></code></pre></td></tr></table></figure>
+
+<p>Spring Security 的教學將在 <strong>第 13 篇</strong>繼續。</p>
+<hr>
+<h1 id="專案介紹：會員註冊與登入系統"><a href="#專案介紹：會員註冊與登入系統" class="headerlink" title="專案介紹：會員註冊與登入系統"></a><strong>專案介紹：會員註冊與登入系統</strong></h1><p>此專案將建置一個 <strong>會員註冊登入系統</strong>，使用者可透過網頁註冊與登入。我們會透過 <strong>Spring Security</strong> 驗證會員的 Email 與密碼，只有輸入正確的帳密才能登入。此外，未登入時無法進入某些特定頁面。</p>
+<h3 id="專案目標："><a href="#專案目標：" class="headerlink" title="專案目標："></a><strong>專案目標</strong>：</h3><p>與以往不同，此專案不會一次提供完整的 Controller、Service、Repository。我希望將 <strong>Spring Security</strong> 的教學分步拆解，以簡化理解難度，循序漸進。</p>
+<hr>
+<h1 id="專案架構"><a href="#專案架構" class="headerlink" title="專案架構"></a><strong>專案架構</strong></h1><h3 id="User-Entity"><a href="#User-Entity" class="headerlink" title="User Entity"></a><strong>User Entity</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料類型</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一識別碼</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>電子郵件</td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>密碼</td>
+</tr>
+</tbody></table>
+<h3 id="系統功能"><a href="#系統功能" class="headerlink" title="系統功能"></a><strong>系統功能</strong></h3><table>
+<thead>
+<tr>
+<th>路徑</th>
+<th>HTTP 方法</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;</td>
+<td>GET</td>
+<td>顯示首頁</td>
+</tr>
+<tr>
+<td>&#x2F;register</td>
+<td>GET</td>
+<td>註冊頁面</td>
+</tr>
+<tr>
+<td>&#x2F;register</td>
+<td>POST</td>
+<td>新增使用者</td>
+</tr>
+<tr>
+<td>&#x2F;users</td>
+<td>GET</td>
+<td>顯示用戶的 Email 列表</td>
+</tr>
+<tr>
+<td>&#x2F;login</td>
+<td>GET</td>
+<td>登入頁面</td>
+</tr>
+<tr>
+<td>&#x2F;login</td>
+<td>POST</td>
+<td>處理登入程序</td>
+</tr>
+<tr>
+<td>&#x2F;logout</td>
+<td>GET</td>
+<td>登出</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="建立專案"><a href="#建立專案" class="headerlink" title="建立專案"></a><strong>建立專案</strong></h1><p>按照以下說明建立專案，下載並解壓縮範例檔案。</p>
+<p class='item-img' data-src='https://images2.imgbox.com/da/3f/Gn2G3Gbi_o.png'><img src="https://images2.imgbox.com/da/3f/Gn2G3Gbi_o.png"></p>
+<hr>
+<h1 id="創立資料庫並進行連接"><a href="#創立資料庫並進行連接" class="headerlink" title="創立資料庫並進行連接"></a><strong>創立資料庫並進行連接</strong></h1><ol>
+<li>開啟 **MySQL Client (MariaDB (x64))**。</li>
+<li>輸入密碼並按下 Enter。</li>
+<li>執行以下指令建立資料庫：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> DATABASE user_db;<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>關閉視窗，開啟專案並修改 **<code>application.properties</code>**：</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.application.name</span>=<span class="hljs-string">user_registration_system</span><br><br><span class="hljs-attr">spring.datasource.url</span>=<span class="hljs-string">jdbc:mariadb://localhost:3306/user_db</span><br><span class="hljs-attr">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">spring.datasource.password</span>=<span class="hljs-string">填入密碼</span><br><span class="hljs-attr">spring.datasource.driver-class-name</span>=<span class="hljs-string">org.mariadb.jdbc.Driver</span><br><br><span class="hljs-attr">spring.jpa.hibernate.ddl-auto</span>=<span class="hljs-string">update</span><br><span class="hljs-attr">spring.jpa.show-sql</span>=<span class="hljs-string">true</span><br></code></pre></td></tr></table></figure>
+
+<p>啟動專案，確認資料庫是否能成功連接。如果沒有錯誤訊息即表示成功。</p>
+<hr>
+<h1 id="Entity：User"><a href="#Entity：User" class="headerlink" title="Entity：User"></a><strong>Entity：User</strong></h1><p>在這裡建立 <strong>User Entity</strong>，並設置資料表名稱為 <code>users</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Entity</span><br><span class="hljs-meta">@Table(name = &quot;users&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>    <span class="hljs-meta">@Id</span><br>    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span><br>    <span class="hljs-keyword">private</span> Long id;<br><br>    <span class="hljs-meta">@Column(unique = true, nullable = false)</span><br>    <span class="hljs-meta">@NotEmpty(message = &quot;email為必填項目&quot;)</span><br>    <span class="hljs-meta">@Email(message = &quot;請填入正確的Email&quot;)</span><br>    <span class="hljs-keyword">private</span> String email;<br><br>    <span class="hljs-meta">@Column(nullable = false)</span><br>    <span class="hljs-meta">@NotEmpty(message = &quot;密碼為必填項目&quot;)</span><br>    <span class="hljs-keyword">private</span> String password;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">()</span> &#123;&#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">(Long id, String email, String password)</span> &#123;<br>        <span class="hljs-built_in">this</span>.id = id;<br>        <span class="hljs-built_in">this</span>.email = email;<br>        <span class="hljs-built_in">this</span>.password = password;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Long <span class="hljs-title function_">getId</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> id;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setId</span><span class="hljs-params">(Long id)</span> &#123;<br>        <span class="hljs-built_in">this</span>.id = id;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getEmail</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> email;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setEmail</span><span class="hljs-params">(String email)</span> &#123;<br>        <span class="hljs-built_in">this</span>.email = email;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getPassword</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> password;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPassword</span><span class="hljs-params">(String password)</span> &#123;<br>        <span class="hljs-built_in">this</span>.password = password;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>啟動專案後，檢查資料表是否成功建立。</p>
+<hr>
+<h1 id="Repository：UserRepository"><a href="#Repository：UserRepository" class="headerlink" title="Repository：UserRepository"></a><strong>Repository：UserRepository</strong></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JpaRepository</span>&lt;User, Long&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="建立-AuthController-與首頁"><a href="#建立-AuthController-與首頁" class="headerlink" title="建立 AuthController 與首頁"></a><strong>建立 AuthController 與首頁</strong></h1><p><strong>AuthController</strong> 將負責完成註冊與登入功能。專案完成後，未登入者只能存取 <strong>AuthController</strong> 的內容，無法進入其他頁面。</p>
+<p><strong>AuthController 基本結構：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthController</span> &#123;<br>    <span class="hljs-comment">// 顯示首頁</span><br>    <span class="hljs-meta">@GetMapping(&quot;/&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">index</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;index&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>首頁模板：<code>index.html</code></strong></p>
+<p>此頁面目前僅提供前往首頁與註冊頁面的按鈕（點擊註冊頁面會顯示 404，因尚未建立）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>User Registration System<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">&quot;@&#123;/&#125;&quot;</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">&quot;@&#123;/register&#125;&quot;</span>&gt;</span>Register<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>啟動專案並進入 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a> ，確認是否能看到首頁上的 <strong>Home</strong> 與 <strong>Register</strong> 按鈕。</p>
+<p class='item-img' data-src='https://images2.imgbox.com/bb/d8/35z4x6ZT_o.png'><img src="https://images2.imgbox.com/bb/d8/35z4x6ZT_o.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/21/spring-boot-pop-12/">← Next Spring Boot project-oriented programming（12）會員註冊與登入系統：註冊</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/19/spring-boot-pop-10/">Spring Boot project-oriented programming（10）使用MongoDB打造全端專案 前端與測試 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8D%E4%BD%BF%E7%94%A8-csrf-disable"><span class="toc-number">1.</span> <span class="toc-text">為什麼不使用 csrf().disable()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%88%8A%E6%9C%89%E7%9A%84%E5%AF%AB%E6%B3%95"><span class="toc-number">1.0.1.</span> <span class="toc-text">舊有的寫法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E9%80%B2%E5%BE%8C%E7%9A%84%E5%AF%AB%E6%B3%95"><span class="toc-number">1.0.2.</span> <span class="toc-text">改進後的寫法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E4%BB%8B%E7%B4%B9%EF%BC%9A%E6%9C%83%E5%93%A1%E8%A8%BB%E5%86%8A%E8%88%87%E7%99%BB%E5%85%A5%E7%B3%BB%E7%B5%B1"><span class="toc-number">2.</span> <span class="toc-text">專案介紹：會員註冊與登入系統</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E7%9B%AE%E6%A8%99%EF%BC%9A"><span class="toc-number">2.0.1.</span> <span class="toc-text">專案目標：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E6%9E%B6%E6%A7%8B"><span class="toc-number">3.</span> <span class="toc-text">專案架構</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Entity"><span class="toc-number">3.0.1.</span> <span class="toc-text">User Entity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E5%8A%9F%E8%83%BD"><span class="toc-number">3.0.2.</span> <span class="toc-text">系統功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88"><span class="toc-number">4.</span> <span class="toc-text">建立專案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%B5%E7%AB%8B%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%A6%E9%80%B2%E8%A1%8C%E9%80%A3%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">創立資料庫並進行連接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Entity%EF%BC%9AUser"><span class="toc-number">6.</span> <span class="toc-text">Entity：User</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Repository%EF%BC%9AUserRepository"><span class="toc-number">7.</span> <span class="toc-text">Repository：UserRepository</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-AuthController-%E8%88%87%E9%A6%96%E9%A0%81"><span class="toc-number">8.</span> <span class="toc-text">建立 AuthController 與首頁</span></a></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

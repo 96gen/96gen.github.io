@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（2）Hello World | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（2）Hello World</h1></div><hr><div id="post-content"><p>專案挑戰的第一步是「Hello World」，這是一個建立Spring Boot專案並回應「Hello World」的入門專案。看似簡單，卻能讓初學者逐步熟悉專案環境設置與開發流程。</p>
+<h2 id="步驟一：安裝與設置-IDE"><a href="#步驟一：安裝與設置-IDE" class="headerlink" title="步驟一：安裝與設置 IDE"></a>步驟一：安裝與設置 IDE</h2><p>首先，我們會使用 <a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/download">IntelliJ IDEA Community</a> ，這是一個免費的 IDE 工具來進行專案開發。在下載和安裝的過程中，請選擇「Community」版，而非「Ultimate」版，後者僅提供30天試用。</p>
+<p>下載並安裝完成後，打開 IntelliJ，準備開始新專案。</p>
+<h2 id="步驟二：使用-Spring-Initializr-建立專案"><a href="#步驟二：使用-Spring-Initializr-建立專案" class="headerlink" title="步驟二：使用 Spring Initializr 建立專案"></a>步驟二：使用 Spring Initializr 建立專案</h2><p>接著，我們會使用 <a target="_blank" rel="noopener" href="https://start.spring.io/">Spring Initializr</a> ，這是一個官方提供的快速設定工具。Spring Initializr 能幫助你輕鬆生成一個基本的 Spring Boot 專案結構，以下是設定過程：</p>
+<ol>
+<li><strong>選擇 Spring Boot 版本</strong>：可使用最新的穩定版，預設通常是最佳選擇。</li>
+<li><strong>填寫專案資訊</strong>：設定 Group、Artifact 及 Description，可以自訂專案名稱或「Hello World」。</li>
+<li><strong>選擇 Dependency</strong>：只需選擇 <code>Spring Web</code>，因為這是 Web 應用程式的基礎。</li>
+</ol>
+<p class='item-img' data-src='https://images2.imgbox.com/ae/7b/cEch60vj_o.png'><img src="https://images2.imgbox.com/ae/7b/cEch60vj_o.png"></p>
+<p>點擊 <code>GENERATE</code> 後下載並解壓縮的專案。</p>
+<h2 id="步驟三：打開專案並設置-Controller"><a href="#步驟三：打開專案並設置-Controller" class="headerlink" title="步驟三：打開專案並設置 Controller"></a>步驟三：打開專案並設置 Controller</h2><p>在 IntelliJ 中打開剛解壓縮的專案，等到右下角的進度條消失，表示專案已經完全載入完成。接下來，在 <code>src/main/java</code> 資料夾下創建一個新 Package，命名為 <code>com.helloworld.controller</code>，並在該 Package 內創建一個名為 <code>HelloWorldController.java</code> 的 Java Class。</p>
+<h3 id="HelloWorldController-java-範例"><a href="#HelloWorldController-java-範例" class="headerlink" title="HelloWorldController.java 範例"></a>HelloWorldController.java 範例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.helloworld.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorldController</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;/hello&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">hello</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此 Controller 會接收來自 <code>/hello</code> 的請求，並回應「Hello, World!」。</p>
+<h2 id="步驟四：執行專案並驗證結果"><a href="#步驟四：執行專案並驗證結果" class="headerlink" title="步驟四：執行專案並驗證結果"></a>步驟四：執行專案並驗證結果</h2><p>返回 <code>HelloWorldApplication.java</code>，點擊 <code>public static void main</code> 函數旁邊的綠色三角形啟動專案。首次啟動時，可能需要設置 JDK，選擇版本 17 並安裝 Amazon Corretto。</p>
+<p>執行後，打開瀏覽器並進入 <code>http://localhost:8080/hello</code>，你將看到「Hello, World!」的訊息。</p>
+<p class='item-img' data-src='https://images2.imgbox.com/5c/93/pKisNBy0_o.png'><img src="https://images2.imgbox.com/5c/93/pKisNBy0_o.png"></p>
+<h2 id="進階操作：修改-Port"><a href="#進階操作：修改-Port" class="headerlink" title="進階操作：修改 Port"></a>進階操作：修改 Port</h2><p>如果想修改應用的預設 Port，可以在 <code>src/main/resources/application.properties</code> 中添加以下代碼：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">server.port=8081<br></code></pre></td></tr></table></figure>
+
+<p>此時，請求網址將改為 <code>http://localhost:8081/hello</code>。</p>
+<h2 id="多種-Controller-寫法"><a href="#多種-Controller-寫法" class="headerlink" title="多種 Controller 寫法"></a>多種 Controller 寫法</h2><p>除了上述的簡單寫法，還有其他幾種變化，讓我們簡單了解一下不同的寫法：</p>
+<ul>
+<li><strong>使用 @Controller 和 @ResponseBody</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorldController</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;/hello&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">hello</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>組合 @RequestMapping</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/hello&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorldController</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">hello</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;<br>    &#125;<br>    <span class="hljs-meta">@RequestMapping(&quot;/spring&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">helloSpring</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, Spring!&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>這樣的寫法有助於簡化 URL 的處理，避免重複的 <code>/hello</code> 路徑。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>透過這個專案，初學者可以熟悉 Spring Boot 的基本架構和控制器的創建過程。</p>
+<p><a target="_blank" rel="noopener" href="https://mega.nz/file/oU0TEA5a#bQntVal2ohH5S3J4FDDkVBxpeq2K8qa8NO-Ld6HALU8">https://mega.nz/file/oU0TEA5a#bQntVal2ohH5S3J4FDDkVBxpeq2K8qa8NO-Ld6HALU8</a></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/12/spring-boot-pop-03/">← Next Spring Boot project-oriented programming（3）API專案 概念</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/10/spring-boot-pop-01/">Spring Boot project-oriented programming（1）前言 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%A9%9F%E4%B8%80%EF%BC%9A%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E7%BD%AE-IDE"><span class="toc-number">1.</span> <span class="toc-text">步驟一：安裝與設置 IDE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%A9%9F%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8-Spring-Initializr-%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">步驟二：使用 Spring Initializr 建立專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%A9%9F%E4%B8%89%EF%BC%9A%E6%89%93%E9%96%8B%E5%B0%88%E6%A1%88%E4%B8%A6%E8%A8%AD%E7%BD%AE-Controller"><span class="toc-number">3.</span> <span class="toc-text">步驟三：打開專案並設置 Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HelloWorldController-java-%E7%AF%84%E4%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">HelloWorldController.java 範例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%A9%9F%E5%9B%9B%EF%BC%9A%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E4%B8%A6%E9%A9%97%E8%AD%89%E7%B5%90%E6%9E%9C"><span class="toc-number">4.</span> <span class="toc-text">步驟四：執行專案並驗證結果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E9%9A%8E%E6%93%8D%E4%BD%9C%EF%BC%9A%E4%BF%AE%E6%94%B9-Port"><span class="toc-number">5.</span> <span class="toc-text">進階操作：修改 Port</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%A8%AE-Controller-%E5%AF%AB%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">多種 Controller 寫法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-number">7.</span> <span class="toc-text">結論</span></a></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

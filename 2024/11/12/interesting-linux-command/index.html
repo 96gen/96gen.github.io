@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>五個沒用但是有趣的Linux的指令 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>五個沒用但是有趣的Linux的指令</h1></div><hr><div id="post-content"><p>今天要介紹幾個 Linux 指令，雖然它們沒有實際用途，但卻充滿趣味！</p>
+<blockquote>
+<p>提醒：以下指令都需要安裝相應的套件，套件名稱和小標題相同。</p>
+</blockquote>
+<hr>
+<h1 id="asciiquarium"><a href="#asciiquarium" class="headerlink" title="asciiquarium"></a>asciiquarium</h1><p>輸入 <code>asciiquarium</code>，畫面上會出現由文字組成的魚群在「水中」悠游，營造出有趣的水族箱效果。按 <code>q</code> 即可結束。</p>
+<h1 id="cmatrix"><a href="#cmatrix" class="headerlink" title="cmatrix"></a>cmatrix</h1><p>想要偽裝成駭客嗎？<code>cmatrix</code> 也許能滿足你的願望。輸入 <code>cmatrix</code>，綠色字元就會像駭客風格的螢幕那樣不斷滾動，按 <code>q</code> 結束。</p>
+<p>你也可以切換顏色，例如輸入 <code>cmatrix -C red</code> 切換到紅色，或用 <code>cmatrix -r</code> 讓字元色彩繽紛。</p>
+<h1 id="hollywood"><a href="#hollywood" class="headerlink" title="hollywood"></a>hollywood</h1><p>覺得 <code>cmatrix</code> 不夠駭客？那麼 <code>hollywood</code> 這個指令更能滿足你的駭客情境需求。輸入 <code>hollywood</code>，螢幕將模擬出各種看似高科技的終端畫面，似乎正在破解防火牆。按下 <code>Ctrl + C</code> 即可結束。</p>
+<h1 id="cowsay"><a href="#cowsay" class="headerlink" title="cowsay"></a>cowsay</h1><p>撰寫教學文件時想加點趣味？可以試試 <code>cowsay</code> 讓小牛說話！例如，輸入 <code>cowsay &quot;Hello, World!&quot;</code>，會出現以下內容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"> _______________<br>&lt; Hello, World! &gt;<br> ---------------<br>        \   ^__^<br>         \  (oo)\_______<br>            (__)\       )\/\<br>                ||----w |<br>                ||     ||<br></code></pre></td></tr></table></figure>
+
+<p>除了牛，<code>cowsay</code> 還提供其他角色，使用 <code>cowsay -l</code> 查看完整角色列表。</p>
+<p>切換角色時，輸入 <code>cowsay -f 角色名</code>，如要用兔子角色，可以輸入 <code>cowsay -f bunny &quot;Hello, World!&quot;</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"> _______________<br>&lt; Hello, World! &gt;<br> ---------------<br>  \<br>   \   \<br>        \ /\<br>        ( )<br>      .( o ).<br></code></pre></td></tr></table></figure>
+
+<h1 id="bastet"><a href="#bastet" class="headerlink" title="bastet"></a>bastet</h1><p><code>bastet</code> 可以讓你在終端機中玩俄羅斯方塊！輸入 <code>bastet</code> 開始遊戲，按 <code>Ctrl + C</code> 結束。</p>
+<hr>
+<p>這些指令可能在工作上幫不上忙，但偶爾用來放鬆心情還是很不錯的。試試看吧！</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/11/18/linux-debug-01/">← Next 如何排除 Linux 硬碟讀寫緩慢的問題</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/11/11/putty-ssh-tutorial/">如何使用PuTTY私鑰登入 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#asciiquarium"><span class="toc-number">1.</span> <span class="toc-text">asciiquarium</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cmatrix"><span class="toc-number">2.</span> <span class="toc-text">cmatrix</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hollywood"><span class="toc-number">3.</span> <span class="toc-text">hollywood</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cowsay"><span class="toc-number">4.</span> <span class="toc-text">cowsay</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bastet"><span class="toc-number">5.</span> <span class="toc-text">bastet</span></a></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

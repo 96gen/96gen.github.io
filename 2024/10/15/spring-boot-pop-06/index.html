@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（6）API專案 測試 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（6）API專案 測試</h1></div><hr><div id="post-content"><h2 id="專案測試與部署指南"><a href="#專案測試與部署指南" class="headerlink" title="專案測試與部署指南"></a>專案測試與部署指南</h2><h3 id="功能測試"><a href="#功能測試" class="headerlink" title="功能測試"></a>功能測試</h3><p>專案已完成，接下來需測試各個功能以確保正常運作。<br><strong>注意</strong>：  </p>
+<ul>
+<li>每次專案重新啟動時，資料庫的內容將會重置。  </li>
+<li>若使用 <strong>Spring Boot DevTools</strong>，修改並儲存程式碼後會自動重啟專案，同時清除資料。</li>
+</ul>
+<hr>
+<h3 id="使用-Hoppscotch-測試-RESTful-API"><a href="#使用-Hoppscotch-測試-RESTful-API" class="headerlink" title="使用 Hoppscotch 測試 RESTful API"></a>使用 Hoppscotch 測試 RESTful API</h3><p>我們將使用 <strong>Hoppscotch</strong> 測試 API 功能。相比於需要登入的 Postman，我更推薦 Hoppscotch，因其更簡單直接。  </p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://hoppscotch.io/">Hoppscotch 網頁版</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://chromewebstore.google.com/detail/hoppscotch-browser-extens/amknoiejhlmhancpahfcfcfhllgkpbld">Chrome 擴充套件</a></li>
+</ol>
+<p>為了方便測試，這裡提供一個預先設定好的檔案供下載：<a target="_blank" rel="noopener" href="https://mega.nz/file/JVVgmKyD#VDcLoR0amGXG3ohR_NwWJNC_3ktWoE1J1eRlt7Cvr_I">API 測試範例下載</a>。  </p>
+<hr>
+<h3 id="匯入範例設定"><a href="#匯入範例設定" class="headerlink" title="匯入範例設定"></a>匯入範例設定</h3><ol>
+<li><p>在 Hoppscotch 左側點擊 <strong>資料夾圖示</strong>。<br class='item-img' data-src='https://images2.imgbox.com/22/81/fLLrjI4j_o.png'><img src="https://images2.imgbox.com/22/81/fLLrjI4j_o.png" alt="資料夾圖示">  </p>
+</li>
+<li><p>選擇 <strong>Import from Hoppscotch</strong>。<br class='item-img' data-src='https://images2.imgbox.com/76/68/Wpp7OsfU_o.png'><img src="https://images2.imgbox.com/76/68/Wpp7OsfU_o.png" alt="Import 選項">  </p>
+</li>
+<li><p>匯入下載的 JSON 檔案後，按 <strong>Import</strong>。<br class='item-img' data-src='https://images2.imgbox.com/d5/5d/6cbSb1gz_o.png'><img src="https://images2.imgbox.com/d5/5d/6cbSb1gz_o.png" alt="匯入 JSON">  </p>
+</li>
+<li><p>你將會看到 <code>todo</code> 資料夾，點開即可查看 API 測試範例。<br class='item-img' data-src='https://images2.imgbox.com/80/13/exayYmXh_o.png'><img src="https://images2.imgbox.com/80/13/exayYmXh_o.png" alt="todo 資料夾"></p>
+</li>
+</ol>
+<hr>
+<h3 id="API-測試操作"><a href="#API-測試操作" class="headerlink" title="API 測試操作"></a>API 測試操作</h3><h4 id="1-Create-Todo"><a href="#1-Create-Todo" class="headerlink" title="1. Create Todo"></a>1. <strong>Create Todo</strong></h4><ul>
+<li>點選 <code>Create todo</code>，按 <strong>Send</strong> 即可新增 todo。  </li>
+<li>在 Body 區域可看到 <code>title</code> 和 <code>completed</code>，你可以嘗試修改後再發送觀察變化。<br class='item-img' data-src='https://images2.imgbox.com/3a/57/Ursp4ovE_o.png'><img src="https://images2.imgbox.com/3a/57/Ursp4ovE_o.png" alt="Create Todo"></li>
+</ul>
+<h4 id="2-Get-All-Todos"><a href="#2-Get-All-Todos" class="headerlink" title="2. Get All Todos"></a>2. <strong>Get All Todos</strong></h4><ul>
+<li>切換到 <code>Get all todos</code>，按 <strong>Send</strong> 即可取得所有 todo。若先前多次新增，這裡會顯示多筆資料。<br class='item-img' data-src='https://images2.imgbox.com/1f/1a/SIj1TeK0_o.png'><img src="https://images2.imgbox.com/1f/1a/SIj1TeK0_o.png" alt="Get All Todos"></li>
+</ul>
+<h4 id="3-Get-Todo-by-ID"><a href="#3-Get-Todo-by-ID" class="headerlink" title="3. Get Todo by ID"></a>3. <strong>Get Todo by ID</strong></h4><ul>
+<li>點選 <code>Get todo by id</code> 並按 <strong>Send</strong>，可取得指定 ID 的 todo。<br class='item-img' data-src='https://images2.imgbox.com/73/75/6bCD2FK7_o.png'><img src="https://images2.imgbox.com/73/75/6bCD2FK7_o.png" alt="Get Todo by ID"></li>
+</ul>
+<h4 id="4-Update-Todo"><a href="#4-Update-Todo" class="headerlink" title="4. Update Todo"></a>4. <strong>Update Todo</strong></h4><ul>
+<li>在 <code>Update todo</code> 中修改資料，按 <strong>Send</strong> 可更新 todo 的內容。<br class='item-img' data-src='https://images2.imgbox.com/49/83/8xgwPu9Q_o.png'><img src="https://images2.imgbox.com/49/83/8xgwPu9Q_o.png" alt="Update Todo"></li>
+</ul>
+<h4 id="5-Set-Todo-Completed-Uncompleted"><a href="#5-Set-Todo-Completed-Uncompleted" class="headerlink" title="5. Set Todo Completed &#x2F; Uncompleted"></a>5. <strong>Set Todo Completed &#x2F; Uncompleted</strong></h4><ul>
+<li>使用 <code>Set todo completed</code> 和 <code>Set todo uncompleted</code> 來變更狀態。<br class='item-img' data-src='https://images2.imgbox.com/00/1c/u9i0slxV_o.png'><img src="https://images2.imgbox.com/00/1c/u9i0slxV_o.png" alt="Set Completed"><br class='item-img' data-src='https://images2.imgbox.com/c1/d0/mK8npgvh_o.png'><img src="https://images2.imgbox.com/c1/d0/mK8npgvh_o.png" alt="Set Uncompleted"></li>
+</ul>
+<h4 id="6-Delete-Todo-by-ID"><a href="#6-Delete-Todo-by-ID" class="headerlink" title="6. Delete Todo by ID"></a>6. <strong>Delete Todo by ID</strong></h4><ul>
+<li>在 <code>Delete todo by id</code> 中按 <strong>Send</strong>，可刪除指定 ID 的 todo。<br class='item-img' data-src='https://images2.imgbox.com/7b/9f/oKf2Ibw7_o.png'><img src="https://images2.imgbox.com/7b/9f/oKf2Ibw7_o.png" alt="Delete Todo"></li>
+</ul>
+<hr>
+<h3 id="專案打包成-JAR-檔"><a href="#專案打包成-JAR-檔" class="headerlink" title="專案打包成 JAR 檔"></a>專案打包成 JAR 檔</h3><p>為了部署方便，我們將專案打包成 <strong>JAR</strong> 檔，避免使用 GUI 介面和減少 RAM 佔用。這對於 <strong>1GB RAM VPS</strong> 特別重要，因為在低資源環境下，無法有效使用像 IDEA 這樣的開發工具。  </p>
+<h4 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h4><ol>
+<li><p>在 IDEA 右側選擇 <strong>m</strong> 並展開 <code>restfulapi</code> → <code>Plugins</code> → <code>clean</code>。  </p>
+</li>
+<li><p>連按兩次 <strong>clean.clean</strong> 清理舊的 target 資料。<br class='item-img' data-src='https://images2.imgbox.com/47/15/RoIMBEiV_o.png'><img src="https://images2.imgbox.com/47/15/RoIMBEiV_o.png" alt="Clean Target">  </p>
+</li>
+<li><p>展開 <strong>Lifecycle</strong>，連按兩次 <strong>package</strong> 打包成 JAR 檔案。<br class='item-img' data-src='https://images2.imgbox.com/49/76/ux5mWCtA_o.png'><img src="https://images2.imgbox.com/49/76/ux5mWCtA_o.png" alt="Package JAR"></p>
+</li>
+</ol>
+<p>JAR 檔會出現在專案的 <strong>target</strong> 資料夾中：  </p>
+<pre><code>target/restfulapi-0.0.1-SNAPSHOT.jar
+</code></pre>
+<h4 id="啟動-JAR-檔"><a href="#啟動-JAR-檔" class="headerlink" title="啟動 JAR 檔"></a>啟動 JAR 檔</h4><p>在命令提示字元中進入 target 資料夾後輸入：  </p>
+<pre><code class="bash">java -jar restfulapi-0.0.1-SNAPSHOT.jar
+</code></pre>
+<p>將 JAR 檔上傳至 <strong>Linux VPS</strong> 伺服器後，也可用相同指令啟動。  </p>
+<hr>
+<h3 id="在-Linux-安裝-JDK"><a href="#在-Linux-安裝-JDK" class="headerlink" title="在 Linux 安裝 JDK"></a>在 Linux 安裝 JDK</h3><p>以下的方式可在 <strong>Debian</strong> 和 <strong>Redhat</strong> 系統上安裝 Amazon Corretto JDK：  </p>
+<ol>
+<li><p><strong>下載 JDK</strong>  </p>
+<pre><code class="bash">wget https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.tar.gz
+</code></pre>
+</li>
+<li><p><strong>解壓縮檔案</strong>  </p>
+<pre><code class="bash">tar -zxvf amazon-corretto-17-x64-linux-jdk.tar.gz
+</code></pre>
+</li>
+<li><p><strong>移動至 &#x2F;usr&#x2F;share 目錄</strong>  </p>
+<pre><code class="bash">sudo mv amazon-corretto-17.0.12.7.1-linux-x64 /usr/share
+</code></pre>
+</li>
+<li><p><strong>設定環境變數</strong><br>編輯 <code>~/.bashrc</code>：  </p>
+<pre><code class="bash">sudo nano ~/.bashrc
+</code></pre>
+<p>在最後新增以下兩行：  </p>
+<pre><code class="bash">export JAVA_HOME=/usr/share/amazon-corretto-17.0.12.7.1-linux-x64
+export PATH=$JAVA_HOME/bin:$PATH
+</code></pre>
+<ul>
+<li>按 <strong>Ctrl+O</strong> 儲存並按 Enter 確認。  </li>
+<li>按 <strong>Ctrl+X</strong> 退出編輯器。</li>
+</ul>
+</li>
+<li><p><strong>啟用環境變數</strong>  </p>
+<pre><code class="bash">source ~/.bashrc
+</code></pre>
+</li>
+<li><p><strong>啟動專案</strong>  </p>
+<pre><code class="bash">java -jar restfulapi-0.0.1-SNAPSHOT.jar
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>透過上述步驟，你就能順利測試和部署專案，並在 VPS 上運行應用程式。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/16/spring-boot-pop-07/">← Next Spring Boot project-oriented programming（7）使用 MariaDB 打造RESTful API專案：從安裝到 CRUD 教學</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/14/spring-boot-pop-05/">Spring Boot project-oriented programming（5）API專案 實作 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E6%B8%AC%E8%A9%A6%E8%88%87%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97"><span class="toc-number">1.</span> <span class="toc-text">專案測試與部署指南</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B8%AC%E8%A9%A6"><span class="toc-number">1.1.</span> <span class="toc-text">功能測試</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Hoppscotch-%E6%B8%AC%E8%A9%A6-RESTful-API"><span class="toc-number">1.2.</span> <span class="toc-text">使用 Hoppscotch 測試 RESTful API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%AF%E5%85%A5%E7%AF%84%E4%BE%8B%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.3.</span> <span class="toc-text">匯入範例設定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-%E6%B8%AC%E8%A9%A6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">API 測試操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Create-Todo"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. Create Todo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Get-All-Todos"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. Get All Todos</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Get-Todo-by-ID"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. Get Todo by ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Update-Todo"><span class="toc-number">1.4.4.</span> <span class="toc-text">4. Update Todo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Set-Todo-Completed-Uncompleted"><span class="toc-number">1.4.5.</span> <span class="toc-text">5. Set Todo Completed &#x2F; Uncompleted</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-Delete-Todo-by-ID"><span class="toc-number">1.4.6.</span> <span class="toc-text">6. Delete Todo by ID</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E6%89%93%E5%8C%85%E6%88%90-JAR-%E6%AA%94"><span class="toc-number">1.5.</span> <span class="toc-text">專案打包成 JAR 檔</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="toc-number">1.5.1.</span> <span class="toc-text">打包流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%95%9F%E5%8B%95-JAR-%E6%AA%94"><span class="toc-number">1.5.2.</span> <span class="toc-text">啟動 JAR 檔</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Linux-%E5%AE%89%E8%A3%9D-JDK"><span class="toc-number">1.6.</span> <span class="toc-text">在 Linux 安裝 JDK</span></a></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

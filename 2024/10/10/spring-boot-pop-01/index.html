@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en-us" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spring Boot project-oriented programming（1）前言 | 96gen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Spring Boot project-oriented programming（1）前言</h1></div><hr><div id="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>市面上已有許多關於 Spring Boot 的教學，大多以控制反轉（Inversion of Control，簡稱 IoC）和 Bean 為起點，逐步引導讀者了解 Spring Boot 的架構設計。這些教學對於想要紮實掌握基礎的學習者非常有幫助。然而，從實作一個專案的角度來學習，能夠更有效地應用這些知識。</p>
+<p>本篇教學適合以下幾類讀者：</p>
+<ul>
+<li><p>已經具備 Spring Boot 基礎知識，或認為不需要深入基礎講解的學習者。</p>
+</li>
+<li><p>有 Java 程式經驗，因為我們將用 Java 完成 Spring Boot 專案。</p>
+</li>
+<li><p>想要獨立完成 Spring Boot 專案的人。</p>
+</li>
+</ul>
+<p>接下來的教學不會詳述 IoC、Bean 或 AOP 的基本概念，而是直接著手於專案開發。</p>
+<h1 id="個人經驗分享"><a href="#個人經驗分享" class="headerlink" title="個人經驗分享"></a>個人經驗分享</h1><p>在我初次接觸 Spring Boot 時，首先學習的是 IoC 的理論和實作方式，並隨之接觸到 Bean 和導向程式設計（Aspect-Oriented Programming, AOP）。這些概念幫助我完成了第一個 “Hello World” 專案。然而，在後續的專案中，我發現自己很少直接使用這些基礎概念，因為 Spring 框架已經自動化處理了很多事情。這讓我開始思考，若當初能參與一個以實際專案為導向的課程，學習曲線或許會更順暢。</p>
+<h1 id="教學內容"><a href="#教學內容" class="headerlink" title="教學內容"></a>教學內容</h1><p>為了幫助讀者高效學習，本教學將聚焦於如何完成具體的專案，而非深入討論 IoC、Bean 或 AOP 的原理。課程內容將帶領大家逐步實作專案，透過實戰操作來學習如何搭建 Spring Boot 應用程式。</p>
+<p>我們會提供完整的專案範例並解釋每個步驟的用意，讓讀者在實作過程中不僅理解專案運作，也能迅速掌握 Spring Boot 的開發流程。</p>
+<h2 id="預計完成的專案"><a href="#預計完成的專案" class="headerlink" title="預計完成的專案"></a>預計完成的專案</h2><p>以下是我們將完成的專案名稱及將學習的技巧：</p>
+<ol>
+<li>Hello World 專案</li>
+</ol>
+<ul>
+<li><p>建立 Spring Boot 專案</p>
+</li>
+<li><p>使用 Controller 在網頁上顯示內容</p>
+</li>
+</ul>
+<ol start="2">
+<li>待辦事項清單</li>
+</ol>
+<ul>
+<li><p>連接 Spring Boot 專案至資料庫</p>
+</li>
+<li><p>完成 RESTful API</p>
+</li>
+<li><p>使用測試工具測試 API</p>
+</li>
+<li><p>打包專案成 jar 檔</p>
+</li>
+</ul>
+<ol start="3">
+<li>書籍管理系統</li>
+</ol>
+<ul>
+<li><p>在 MariaDB 中建立資料庫</p>
+</li>
+<li><p>使用 YAML 配置專案設定</p>
+</li>
+</ul>
+<ol start="4">
+<li>客戶管理系統</li>
+</ol>
+<ul>
+<li><p>在 Spring Boot 中整合 MongoDB</p>
+</li>
+<li><p>使用 Thymeleaf 建立簡易前端介面</p>
+</li>
+</ul>
+<ol start="5">
+<li>會員註冊與登入系統</li>
+</ol>
+<ul>
+<li>使用 Spring Security 完成權限管理</li>
+</ul>
+<ol start="6">
+<li>購物車系統</li>
+</ol>
+<ul>
+<li>整合 Json Web Token（JWT）與 Spring Security 進行權限驗證</li>
+</ul>
+<ol start="7">
+<li>AI 專案</li>
+</ol>
+<ul>
+<li>在 Spring Boot 專案中整合 Ollama，用於 AI 聊天及影像辨識</li>
+</ul>
+<p>此外，為了幫助學習前後端整合，我們還將開發兩個前端專案：</p>
+<ol start="8">
+<li>React Restful API 前端</li>
+</ol>
+<ul>
+<li>使用 Bun、Tailwind CSS、Axios 及 React-router-dom 完成 React 前端專案</li>
+</ul>
+<ol start="9">
+<li>Vue.js 購物車前端</li>
+</ol>
+<ul>
+<li>使用 Vue Router、Pinia、並打包 Vue 專案</li>
+<li>部署至 Linux 伺服器</li>
+</ul>
+<h1 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h1><p>透過本教學，讀者將能夠從零開始實作完整的 Spring Boot 專案，掌握從後端 API 到前端整合的全端開發技能。希望這些實作經驗能幫助大家快速提升開發能力，並應用於實際工作中。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/10/11/spring-boot-pop-02/">← Next Spring Boot project-oriented programming（2）Hello World</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/10/09/build-hexo-github-page/">用Hexo打造靜態Blog Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/6.png" alt="Logo"></a><h1 id="Dr"><a href="/">96gen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%8B%E4%BA%BA%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB"><span class="toc-number">2.</span> <span class="toc-text">個人經驗分享</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%99%E5%AD%B8%E5%85%A7%E5%AE%B9"><span class="toc-number">3.</span> <span class="toc-text">教學內容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A0%90%E8%A8%88%E5%AE%8C%E6%88%90%E7%9A%84%E5%B0%88%E6%A1%88"><span class="toc-number">3.1.</span> <span class="toc-text">預計完成的專案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B5%90%E8%AA%9E"><span class="toc-number">4.</span> <span class="toc-text">結語</span></a></li></ol></div></div><footer><nobr><span class="icp-title">copyright</span><a class="icp-content" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
